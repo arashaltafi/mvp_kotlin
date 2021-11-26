@@ -3,8 +3,12 @@ package com.arash.altafi.mvp.test1.main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
+import android.widget.Toast
 import com.arash.altafi.mvp.test1.Keys
 import com.arash.altafi.mvp.R
 import com.arash.altafi.mvp.test1.login.LoginActivity
@@ -44,11 +48,28 @@ class MainActivity : AppCompatActivity() , MainContract.MainView {
     }
 
     override fun showSave() {
-        startActivity(Intent(this , LoginActivity::class.java).apply {
-            putExtra(Keys.USERNAME , username)
-            putExtra(Keys.NAME , name)
-            putExtra(Keys.PASSWORD , password)
-        })
+        Handler(Looper.myLooper()!!).postDelayed(Runnable {
+            startActivity(Intent(this , LoginActivity::class.java).apply {
+                putExtra(Keys.USERNAME , username)
+                putExtra(Keys.NAME , name)
+                putExtra(Keys.PASSWORD , password)
+                hideProgress()
+            })
+        },1000)
+    }
+
+    override fun hideProgress() {
+        prLoading.visibility = View.GONE
+        btnSave.visibility = View.VISIBLE
+    }
+
+    override fun showProgress() {
+        prLoading.visibility = View.VISIBLE
+        btnSave.visibility = View.GONE
+    }
+
+    override fun onSuccess() {
+        Toast.makeText(this , "Login Succeed!" , Toast.LENGTH_LONG).show()
     }
 
     private fun bindViews() {

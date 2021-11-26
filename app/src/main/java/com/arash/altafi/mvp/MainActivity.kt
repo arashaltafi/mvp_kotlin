@@ -10,7 +10,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var btn1 : MaterialButton
     private lateinit var btn2 : MaterialButton
-    private lateinit var btn3 : MaterialButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +33,6 @@ class MainActivity : AppCompatActivity() {
     private fun bindViews() {
         btn1 = findViewById(R.id.btn_1)
         btn2 = findViewById(R.id.btn_2)
-        btn3 = findViewById(R.id.btn_3)
     }
 
 }

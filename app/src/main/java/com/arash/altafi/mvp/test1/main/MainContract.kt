@@ -5,12 +5,16 @@ interface MainContract {
     interface MainView {
 
         fun showSave()
+        fun hideProgress()
+        fun showProgress()
+        fun onSuccess()
 
     }
 
     interface MainPresenter {
 
         fun handleSaveButton()
+        fun onSuccess()
 
     }
 
